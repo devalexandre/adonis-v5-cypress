@@ -11,8 +11,10 @@
     "@adonisjs/assembler": "^2.0.0",
     "adonis-preset-ts": "^1.0.4",
     "eslint": "^7.2.0",
+    "eslint-config-airbnb": "^18.1.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-adonis": "^1.0.10",
+    "husky": "^4.2.5",
     "pino-pretty": "^4.0.0",
     "prettier": "2.0.5",
     "tslint-config-prettier": "^1.18.0",
@@ -24,8 +26,18 @@
     "@adonisjs/ace": "^6.0.0",
     "@adonisjs/core": "^5.0.0-preview-rc",
     "@adonisjs/fold": "^6.0.0",
+    "lint-staged": "^10.2.10",
     "proxy-addr": "^2.0.6",
     "reflect-metadata": "^0.1.13",
     "source-map-support": "^0.5.19"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "docker-compose -f docker-compose.test.yml up --exit-code-from cypress-adonisv5"
+    }
+  },
+  "lint-staged": {
+    "*.ts": "yarn run eslint  --ext=.ts"
   }
 }

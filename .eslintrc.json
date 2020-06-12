@@ -1,13 +1,14 @@
 {
   "extends": [
     "plugin:adonis/typescriptApp",
-    "prettier"
+    "prettier",
+    "airbnb"
   ],
   "rules": {
     "valid-jsdoc": "off",
     "camelcase": "error",
     "require-jsdoc": "off",
-    "class-methods-use-this": "off",
+    "class-methods-use-this": "error",
     "strict": [0, "global"],
     "consistent-return": "error"
   }
