@@ -1,0 +1,31 @@
+version: '3.2'
+services:
+  adonisv5:
+    container_name: adonisv5
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+    - 3333:3333
+    volumes:
+    - .:/app
+    - /app/node_modules
+
+  # Cypress container
+  cypress-adonisv5:
+    container_name: "cypress-adonisv5"
+
+    image: cypress/included:3.4.1
+    # the Docker image to use from https://github.com/cypress-io/cypress-docker-images
+    build:
+      context: ./e2e
+      dockerfile: Dockerfile
+    command: ["/wait-for-it.sh", "adonisv5:3333", "--", "cypress run"]
+    depends_on:
+      - adonisv5
+    environment:
+      #      # pass base url to test pointing at the web application
+      - CYPRESS_baseUrl=http://adonisv5:3333
+    # share the current folder as volume to avoid copying
+    volumes:
+      - ./e2e:/e2e

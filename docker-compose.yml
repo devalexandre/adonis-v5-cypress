@@ -1,0 +1,13 @@
+version: '3.2'
+services:
+  adonisv5:
+    container_name: adonisv5
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+    - 3333:3333
+    volumes:
+    - .:/app
+    - /app/node_modules
+

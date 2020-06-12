@@ -1,0 +1,14 @@
+{
+  "extends": [
+    "plugin:adonis/typescriptApp",
+    "prettier"
+  ],
+  "rules": {
+    "valid-jsdoc": "off",
+    "camelcase": "error",
+    "require-jsdoc": "off",
+    "class-methods-use-this": "off",
+    "strict": [0, "global"],
+    "consistent-return": "error"
+  }
+}
